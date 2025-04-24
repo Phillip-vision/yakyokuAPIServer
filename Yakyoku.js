@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
+
 const config = {
   user: 'sa',
   password: 'phillip',
@@ -222,7 +223,7 @@ app.get('/api/profit/trends/daily', async (req, res) => {
 
 app.get('/api/profit/trends/monthly', async (req, res) => {
   const { year } = req.query;
-  if (!year) return res.status(400).json({ error: "year is required (e.g. 2025)" });
+  if (!year) return res.status(400).json({ error: "the year is required (e.g. 2025)" });
   try {
     await sql.connect(config);
     const result = await sql.query(`
