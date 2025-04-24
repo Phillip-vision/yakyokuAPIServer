@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 一覧</title>
+</head>
+<body>
+    <h1>薬局APIへようこそ</h1>
+    <div>
+        <img src="/images/nurse.jpg" align="right">
+    </div>
+    <ul>
+        <li><a href="/api/products">商品</a></li>
+        <li><a href="/api/sales">売上</a></li>
+        <li><a href="/api/transactions">取引</a></li>
+        <li>
+            <label for="transaction-id">取引詳細(ID): </label>
+            <input type="text" id="transaction-id" placeholder="取引詳細のIDを入力してください">
+            <button onclick="navigateToTransaction()">Go</button>
+        </li>
+        <li>
+            <label for="sales-report-date">売上リポート(日付): </label>
+            <input type="date" id="sales-report-date">
+            <button onclick="navigateToSalesReport()">Go</button>
+        </li>
+        <li>
+            <label for="monthly-sales-trends-date">日次売上推移 (年-月): </label>
+            <input type="month" id="monthly-sales-trends-date">
+            <button onclick="navigateToMonthlySalesTrends()">Go</button>
+        </li>
+        <li>
+            <label for="yearly-sales-trends-year">月次売上推移(年): </label>
+            <input type="number" id="yearly-sales-trends-year" placeholder="年を入力してください">
+            <button onclick="navigateToYearlySalesTrends()">Go</button>
+        </li>
+        <li>
+            <label for="monthly-profit-trends-date">日次利益(年-月): </label>
+            <input type="month" id="monthly-profit-trends-date">
+            <button onclick="navigateToMonthlyProfitTrends()">Go</button>
+        </li>
+        <li>
+            <label for="yearly-profit-trends-year">月次利益(年): </label>
+            <input type="number" id="yearly-profit-trends-year" placeholder="年を入力してください">
+            <button onclick="navigateToYearlyProfitTrends()">Go</button>
+        </li>
+    </ul>
+
+    <script>
+        function navigateToTransaction() {
+            const id = document.getElementById('transaction-id').value;
+            if (id) {
+                window.location.href = `/api/transactions/${id}`;
+            } else {
+                alert('取引IDを入力してください');
+            }
+        }
+
+        function navigateToSalesReport() {
+            const date = document.getElementById('sales-report-date').value;
+            if (date) {
+                window.location.href = `/api/sales/reports?date=${date}`;
+            } else {
+                alert('日付を選択してください');
+            }
+        }
+
+        function navigateToMonthlySalesTrends() {
+            const month = document.getElementById('monthly-sales-trends-date').value;
+            if (month) {
+                window.location.href = `/api/sales/trends/monthly?year=${month.slice(0, 4)}`;
+            } else {
+                alert('年月を選択してください');
+            }
+        }
+
+        function navigateToYearlySalesTrends() {
+            const year = document.getElementById('yearly-sales-trends-year').value;
+            if (year) {
+                window.location.href = `/api/sales/trends/monthly?year=${year}`;
+            } else {
+                alert('年を入力してください');
+            }
+        }
+
+        function navigateToMonthlyProfitTrends() {
+            const month = document.getElementById('monthly-profit-trends-date').value;
+            if (month) {
+                window.location.href = `/api/profit/trends/monthly?year=${month.slice(0, 4)}`;
+            } else {
+                alert('年月を選択してください');
+            }
+        }
+
+        function navigateToYearlyProfitTrends() {
+            const year = document.getElementById('yearly-profit-trends-year').value;
+            if (year) {
+                window.location.href = `/api/profit/trends/monthly?year=${year}`;
+            } else {
+                alert('年を入力してください');
+            }
+        }
+    </script>
+</body>
+</html>
