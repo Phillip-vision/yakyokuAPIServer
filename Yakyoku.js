@@ -26,10 +26,10 @@ app.get('/api/products', async (req, res) => {
       SELECT 
         ProductId,
         ProductName,
-        Category,
         CostPrice,
         SellingPrice,
-        Stock
+        Stock,
+        ProductTypeId
       FROM Products
       FOR JSON PATH, ROOT('Products')
     `);
@@ -162,7 +162,6 @@ app.get('/api/sales/trends/daily', async (req, res) => {
       WHERE FORMAT(t.TransactionDate, 'yyyy-MM') = '${yearMonth}'
       GROUP BY CAST(t.TransactionDate AS DATE)
       ORDER BY SaleDate
-      FOR JSON PATH, ROOT('DailySales')
     `);
     res.json(result.recordset[0]);
   } catch (err) {
