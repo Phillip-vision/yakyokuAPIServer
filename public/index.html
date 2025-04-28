@@ -13,11 +13,6 @@
     <ul>
         <li><a href="/api/products">商品</a></li>
         <li>
-            <label for="sales-report-date">売上リポート(日付): </label>
-            <input type="date" id="sales-report-date">
-            <button onclick="navigateToSalesReport()">Go</button>
-        </li>
-        <li>
             <label for="monthly-sales-trends-date">日次売上推移 (年-月): </label>
             <input type="month" id="monthly-sales-trends-date">
             <button onclick="navigateToMonthlySalesTrends()">Go</button>
@@ -55,15 +50,6 @@
 
     <script>
         // Existing functions for navigating reports
-        function navigateToSalesReport() {
-            const date = document.getElementById('sales-report-date').value;
-            if (date) {
-                window.location.href = `/api/sales/reports?date=${date}`;
-            } else {
-                alert('日付を選択してください');
-            }
-        }
-
         function navigateToMonthlySalesTrends() {
             const month = document.getElementById('monthly-sales-trends-date').value;
             if (month) {
